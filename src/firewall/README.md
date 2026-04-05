@@ -7,7 +7,7 @@ Sets up an iptables-based firewall that restricts network access to only specifi
 
 ```json
 "features": {
-    "ghcr.io/pajikos/devcontainer-features/firewall:latest": {}
+    "ghcr.io/pajikos/devcontainer-features/firewall:0": {}
 }
 ```
 
