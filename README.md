@@ -1,6 +1,6 @@
 # Dev Container Features
 
-A collection of Dev Container Features published to `ghcr.io/w3cj/devcontainer-features`.
+A collection of Dev Container Features published to `ghcr.io/pajikos/devcontainer-features`.
 
 ## Features
 
@@ -15,7 +15,7 @@ Add features to your `devcontainer.json`:
 ```json
 {
     "features": {
-        "ghcr.io/w3cj/devcontainer-features/firewall:latest": {
+        "ghcr.io/pajikos/devcontainer-features/firewall:latest": {
             "githubIps": true,
             "claudeCode": true
         }

@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-This repository contains Dev Container Features published to `ghcr.io/w3cj/devcontainer-features`. Currently includes a single feature: **firewall** - an iptables-based firewall that restricts outbound network access to only specified hosts.
+This repository contains Dev Container Features published to `ghcr.io/pajikos/devcontainer-features`. Currently includes a single feature: **firewall** - an iptables-based firewall that restricts outbound network access to only specified hosts.
 
 ## Build & Test Commands
 

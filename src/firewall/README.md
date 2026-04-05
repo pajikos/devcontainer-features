@@ -7,7 +7,7 @@ Sets up an iptables-based firewall that restricts network access to only specifi
 
 ```json
 "features": {
-    "ghcr.io/w3cj/devcontainer-features/firewall:latest": {}
+    "ghcr.io/pajikos/devcontainer-features/firewall:latest": {}
 }
 ```
 
@@ -64,7 +64,7 @@ See [`hosts.json`](hosts.json) for the full list of domains allowed by each opti
 
 ```json
 "features": {
-    "ghcr.io/w3cj/devcontainer-features/firewall:latest": {
+    "ghcr.io/pajikos/devcontainer-features/firewall:latest": {
       "verbose": true,
       "hosts": "10.0.0.42,myapi.com,api.mysite.com",
       "githubIps": true,
@@ -108,7 +108,7 @@ Enable `verbose: true` to see inline terminal notifications when connections are
 
 ```json
 "features": {
-    "ghcr.io/w3cj/devcontainer-features/firewall:latest": {
+    "ghcr.io/pajikos/devcontainer-features/firewall:latest": {
         "verbose": true
     }
 }
@@ -170,4 +170,4 @@ When verbose mode is enabled, the following components are activated:
 
 ---
 
-_Note: This file was auto-generated from the [devcontainer-feature.json](https://github.com/w3cj/devcontainer-features/blob/main/src/firewall/devcontainer-feature.json).  Add additional notes to a `NOTES.md`._
+_Note: This file was auto-generated from the [devcontainer-feature.json](https://github.com/pajikos/devcontainer-features/blob/main/src/firewall/devcontainer-feature.json).  Add additional notes to a `NOTES.md`._
