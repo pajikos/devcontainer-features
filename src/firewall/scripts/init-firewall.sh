@@ -197,9 +197,17 @@ else
     echo "No Docker DNS rules to restore"
 fi
 
-# 4. Allow DNS and localhost before any restrictions
+# 4. Allow DNS (UDP + TCP) and localhost before any restrictions
+# TCP is required for DNS responses exceeding 512 bytes (e.g., large IP range lookups)
 iptables -A OUTPUT -p udp --dport 53 -j ACCEPT
+iptables -A OUTPUT -p tcp --dport 53 -j ACCEPT
 iptables -A INPUT -p udp --sport 53 -j ACCEPT
+# Allow traffic to the configured DNS server (Docker Desktop uses 192.168.65.x, not 127.0.0.11)
+DNS_SERVER=$(grep nameserver /etc/resolv.conf | head -1 | awk '{print $2}')
+if [ -n "$DNS_SERVER" ] && [ "$DNS_SERVER" != "127.0.0.11" ]; then
+    echo "Allowing DNS server: $DNS_SERVER"
+    iptables -A OUTPUT -d "$DNS_SERVER" -j ACCEPT
+fi
 iptables -A OUTPUT -p tcp --dport 22 -j ACCEPT
 iptables -A INPUT -p tcp --sport 22 -m state --state ESTABLISHED -j ACCEPT
 iptables -A INPUT -i lo -j ACCEPT
@@ -280,7 +288,9 @@ else
 fi
 
 # 10. Set restrictive default policies
-iptables -P INPUT DROP
+# INPUT ACCEPT: Docker controls inbound access via -p port mappings.
+# Restricting INPUT adds no security in devcontainers and breaks published ports.
+iptables -P INPUT ACCEPT
 iptables -P FORWARD DROP
 iptables -P OUTPUT DROP
 
