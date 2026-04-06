@@ -180,6 +180,10 @@ cp "$SCRIPT_DIR/scripts/init-firewall.sh" /usr/local/bin/init-firewall.sh
 chown root:root /usr/local/bin/init-firewall.sh
 chmod 755 /usr/local/bin/init-firewall.sh
 
+cp "$SCRIPT_DIR/scripts/firewall" /usr/local/bin/firewall
+chown root:root /usr/local/bin/firewall
+chmod 755 /usr/local/bin/firewall
+
 if [ "$VERBOSE" = "true" ]; then
     mkdir -p /var/log/ulog
     cp "$SCRIPT_DIR/scripts/ulogd.conf" /etc/ulogd.conf
@@ -208,7 +212,7 @@ fi
 # - firewall-config.sh has integrity hash verification in init-firewall.sh
 # - init-firewall.sh is owned by root with 755 permissions
 mkdir -p /etc/sudoers.d
-echo "ALL ALL=(root) NOPASSWD: /usr/local/bin/init-firewall.sh" > /etc/sudoers.d/firewall
+echo "ALL ALL=(root) NOPASSWD: /usr/local/bin/init-firewall.sh, /usr/local/bin/firewall" > /etc/sudoers.d/firewall
 chmod 0440 /etc/sudoers.d/firewall
 
 echo 'Firewall feature installed successfully!'
