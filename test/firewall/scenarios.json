@@ -69,5 +69,13 @@
                 "githubIps": true
             }
         }
+    },
+    "test_toggle": {
+        "image": "mcr.microsoft.com/devcontainers/base:debian",
+        "features": {
+            "firewall": {
+                "githubIps": true
+            }
+        }
     }
 }
