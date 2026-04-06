@@ -1,0 +1,32 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+usage() {
+    local policy
+    policy=$(iptables -L OUTPUT 2>/dev/null | grep -o "policy [A-Z]*" | awk '{print $2}')
+    case "$policy" in
+        DROP)   echo "Firewall status: ENABLED (OUTPUT policy DROP)" ;;
+        ACCEPT) echo "Firewall status: DISABLED (OUTPUT policy ACCEPT)" ;;
+        *)      echo "Firewall status: UNKNOWN" ;;
+    esac
+    echo ""
+    echo "Usage: sudo firewall <on|off>"
+    echo "  on   Re-enable firewall (re-runs init-firewall.sh)"
+    echo "  off  Disable firewall (flush OUTPUT chain, set policy ACCEPT)"
+}
+
+case "${1:-}" in
+    off)
+        iptables -F OUTPUT
+        iptables -P OUTPUT ACCEPT
+        echo "Firewall disabled. Run 'sudo firewall on' to re-enable."
+        ;;
+    on)
+        /usr/local/bin/init-firewall.sh
+        ;;
+    *)
+        usage
+        exit 1
+        ;;
+esac
